@@ -22,7 +22,7 @@ class ActivitiesController < ApplicationController
   # POST /activities or /activities.json
   def create
     @activity = Activity.new(activity_params)
-
+    puts activity_params[:activity_name_id]
     respond_to do |format|
       if @activity.save
         format.html { redirect_to activity_url(@activity), notice: "Activity was successfully created." }
@@ -65,6 +65,9 @@ class ActivitiesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def activity_params
-      params.require(:activity).permit(:name, :date, :duration)
+      puts params.inspect
+      # params.require(:activity).permit(:name, :date, :duration)
+      # params.require(:activity).permit(:name, :date, :duration)
+      params.require(:activity).permit(:activity_name_id, :date, :duration)
     end
 end
