@@ -1,3 +1,3 @@
 class ActivityName < ApplicationRecord
-  has_many :Activity
+  has_many :activities
 end
