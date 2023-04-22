@@ -6,4 +6,6 @@ class User < ApplicationRecord
   
   # relation between activities and users
   has_many :activities
+
+
 end

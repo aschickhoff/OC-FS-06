@@ -1,2 +1,21 @@
 @import "bootstrap/scss/bootstrap";
 @import "bootstrap-icons/font/bootstrap-icons";
+
+.navbar {
+  border-radius: 0;
+}
+
+.navbar-brand {
+  font-weight: bold;
+}
+
+.nav-link {
+  font-weight: bold;
+}
+
+.footer {
+  background-color: #746969;
+  margin-top: 2rem;
+  padding: 1rem;
+  text-align: center;
+}
