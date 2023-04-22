@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :users
   resources :activity_names
   resources :activities
   root "home#index"
