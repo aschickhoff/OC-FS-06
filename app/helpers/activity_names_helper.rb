@@ -1,0 +1,2 @@
+module ActivityNamesHelper
+end
