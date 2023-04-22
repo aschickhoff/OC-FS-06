@@ -10,14 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_04_22_130208) do
+ActiveRecord::Schema[7.0].define(version: 2023_04_22_135159) do
   create_table "activities", force: :cascade do |t|
     t.date "date"
     t.integer "duration"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "activity_name_id", default: 1, null: false
+    t.integer "user_id"
     t.index ["activity_name_id"], name: "index_activities_on_activity_name_id"
+    t.index ["user_id"], name: "index_activities_on_user_id"
   end
 
   create_table "activity_names", force: :cascade do |t|
