@@ -11,9 +11,6 @@
   <body>
     <%= render "shared/header" %>
     <div class="container">
-      <% if notice %>
-        <%= render "shared/alerts" %>
-      <% end %>
       <%= yield %>
     </div>
     <%= render "shared/footer" %>
