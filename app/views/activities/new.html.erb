@@ -1,9 +1,28 @@
 <h1>New activity</h1>
-
 <%= render "form", activity: @activity %>
-
 <br>
-
 <div>
   <%= link_to "Back to activities", activities_path %>
 </div>
+<h1>New Activity</h1>
+<%= form_with(model: @activity, local: true) do |form| %>
+  <%= render 'shared/error_messages', object: form.object %>
+  <div class="mb-3">
+    <%= form.label :name %>
+    <%= form.text_field :name, class: 'form-control' %>
+  </div>
+  <div class="mb-3">
+    <%= form.label :date %>
+    <%= form.date_field :date, class: 'form-control' %>
+  </div>
+  <div class="mb-3">
+    <%= form.label :duration %>
+    <%= form.number_field :duration, class: 'form-control' %>
+  </div>
+  <div class="mb-3">
+    <%= form.label :activity_name_id %>
+    <%= form.collection_select :activity_name_id, ActivityName.all, :id, :name, class: 'form-control' %>
+  </div>
+  <%= form.submit 'Create', class: 'btn btn-primary' %>
+  <%= link_to 'Cancel', activities_path, class: 'btn btn-secondary' %>
+<% end %>

@@ -1,26 +1,45 @@
-<p style="color: green"><%= notice %></p>
 <h1>Activities</h1>
+<%= form_with url: activities_path, method: :get do |form| %>
+  <%= form.label :activity_name_id, "Activity Name:" %>
+  <%= form.collection_select :activity_name_id, ActivityName.all, :id, :name, { include_blank: "All" }, { class: "form-control" } %>
+  <%= form.label :start_date, "Start Date:" %>
+  <%= form.date_field :start_date, class: "form-control" %>
+  <%= form.label :end_date, "End Date:" %>
+  <%= form.date_field :end_date, class: "form-control" %>
+  <%= form.label :min_duration, "Minimum Duration:" %>
+  <%= form.number_field :min_duration, class: "form-control" %>
+  <%= form.label :max_duration, "Maximum Duration:" %>
+  <%= form.number_field :max_duration, class: "form-control" %>
+  <%= form.submit "Filter", class: "btn btn-primary" %>
+<% end %>
 <table class="table">
-  <thead class="table-dark">
+  <thead>
     <tr>
-      <th scope="col">#</th>
-      <th scope="col">Activity</th>
-      <th scope="col">Duration</th>
-      <th scope="col">Date</th>
-      <th colspan="3"></th>
+      <th><%= link_to "Date", { sort: "date", direction: "asc" }, { class: "btn btn-link" } %></th>
+      <th><%= link_to "Activity Name", { sort: "activity_names.name", direction: "asc" }, { class: "btn btn-link" } %></th>
+      <th><%= link_to "Duration", { sort: "duration", direction: "asc" }, { class: "btn btn-link" } %></th>
+      <th></th>
     </tr>
   </thead>
   <tbody>
-    <% @activities.each_with_index do |activity, index| %>
+    <% @activities.each do |activity| %>
       <tr>
-        <td><%= index + 1 %></td>
+        <td><%= activity.date %></td>
         <td><%= activity.activity_name.name %></td>
         <td><%= activity.duration %></td>
-        <td><%= activity.date %></td>
-        <td><%= link_to "Show", activity %></td>
-        <td><%= link_to "Edit", edit_activity_path(activity) %></td>
-        <td><%= link_to "Destroy", activity, method: :delete %></td>
+        <td>
+          <%= link_to 'Show', activity_path(activity), class: 'btn btn-primary btn-sm' %>
+          <%= link_to 'Edit', edit_activity_path(activity), class: 'btn btn-secondary btn-sm' %>
+          <%= link_to 'Delete', activity_path(activity),
+                      method: :delete,
+                      data: { confirm: 'Are you sure?' },
+                      class: 'btn btn-danger btn-sm' %>
+        </td>
       </tr>
     <% end %>
   </tbody>
 </table>
+<p>
+  <%= link_to 'New Activity', new_activity_path, class: 'btn btn-success' %>
+</p>
+<%= paginate @activities  %>

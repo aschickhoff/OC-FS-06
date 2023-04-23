@@ -4,9 +4,32 @@ class ActivitiesController < ApplicationController
 
   # GET /activities or /activities.json
   def index
-    # @activities = Activity.all
-    @activities = current_user.activities
+    @activities = current_user.activities.includes(:activity_name)
+
+    if params[:activity_name_id].present?
+      @activities = @activities.where(activity_name_id: params[:activity_name_id])
+    end
+    
+    if params[:start_date].present? && params[:end_date].present?
+      @activities = @activities.where(date: params[:start_date]..params[:end_date])
+    end
+    
+    if params[:min_duration].present?
+      @activities = @activities.where("duration >= ?", params[:min_duration].to_i)
+    end
+    
+    if params[:max_duration].present?
+      @activities = @activities.where("duration <= ?", params[:max_duration].to_i)
+    end
+    
+    if params[:sort].present? && params[:direction].present?
+      @activities = @activities.order("#{params[:sort]} #{params[:direction]}")
+    end
+    
+    @activities = @activities.page(params[:page]).per(10)
   end
+  
+
 
   # GET /activities/1 or /activities/1.json
   def show

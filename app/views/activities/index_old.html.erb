@@ -1,0 +1,79 @@
+<p style="color: green"><%= notice %></p>
+  <%= form_with method: :get do |f| %>
+  <%= f.collection_select :activity_name_id, ActivityName.all, :id, :name, { prompt: true }, { class: 'form-control' } %>
+  <%= f.label :start_date, 'From' %>
+  <%= f.date_field :start_date, class: 'form-control' %>
+  <%= f.label :end_date, 'To' %>
+  <%= f.date_field :end_date, class: 'form-control' %>
+  <%= f.label :min_duration, 'Min duration (minutes)' %>
+  <%= f.number_field :min_duration, class: 'form-control' %>
+  <%= f.label :max_duration, 'Max duration (minutes)' %>
+  <%= f.number_field :max_duration, class: 'form-control' %>
+  <%= f.submit 'Filter', class: 'btn btn-primary' %>
+<% end %>
+<thead>
+  <tr>
+    <th><%= link_to 'Activity', activities_path(sort: 'name', direction: sort_direction('name')) %></th>
+    <th><%= link_to 'Date', activities_path(sort: 'date', direction: sort_direction('date')) %></th>
+    <th><%= link_to 'Duration', activities_path(sort: 'duration', direction: sort_direction('duration')) %></th>
+    <th></th>
+  </tr>
+</thead>
+<h1>Activities</h1>
+<table class="table">
+  <thead class="table-dark">
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Activity</th>
+      <th scope="col">Duration</th>
+      <th scope="col">Date</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @activities.each_with_index do |activity, index| %>
+      <tr>
+        <td><%= index + 1 %></td>
+        <td><%= activity.activity_name.name %></td>
+        <td><%= activity.duration %></td>
+        <td><%= activity.date %></td>
+        <td><%= link_to "Show", activity %></td>
+        <td><%= link_to "Edit", edit_activity_path(activity) %></td>
+        <td><%= link_to "Destroy", activity, method: :delete %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<h1>Activities</h1>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th>Name</th>
+      <th>Date</th>
+      <th>Duration</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @activities.each_with_index do |activity, index| %>
+      <tr>
+        <td><%= index + 1 %></td>
+        <td><%= activity.activity_name.name %></td>
+        <td><%= activity.date.strftime("%B %d, %Y") %></td>
+        <td><%= activity.duration %> minutes</td>
+        <td>
+          <%= link_to 'Show', activity_path(activity), class: 'btn btn-primary btn-sm' %>
+          <%= link_to 'Edit', edit_activity_path(activity), class: 'btn btn-secondary btn-sm' %>
+          <%= link_to 'Delete', activity_path(activity),
+                      method: :delete,
+                      data: { confirm: 'Are you sure?' },
+                      class: 'btn btn-danger btn-sm' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<p>
+  <%= link_to 'New Activity', new_activity_path, class: 'btn btn-success' %>
+</p>
