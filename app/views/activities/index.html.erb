@@ -15,9 +15,9 @@
 <table class="table">
   <thead>
     <tr>
-      <th><%= link_to "Date", { sort: "date", direction: "asc" }, { class: "btn btn-link" } %></th>
-      <th><%= link_to "Activity Name", { sort: "activity_names.name", direction: "asc" }, { class: "btn btn-link" } %></th>
-      <th><%= link_to "Duration", { sort: "duration", direction: "asc" }, { class: "btn btn-link" } %></th>
+      <th><%= link_to "Date", { sort: "date", direction: params[:direction] == "asc" ? "desc" : "asc" }, { class: "btn btn-link" } %></th>
+      <th><%= link_to "Activity Name", { sort: "activity_names.name", direction: params[:direction] == "asc" ? "desc" : "asc" }, { class: "btn btn-link" } %></th>
+      <th><%= link_to "Duration", { sort: "duration", direction: params[:direction] == "asc" ? "desc" : "asc" }, { class: "btn btn-link" } %></th>
       <th></th>
     </tr>
   </thead>
