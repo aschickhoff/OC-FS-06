@@ -1,10 +1,4 @@
 <p style="color: green"><%= notice %></p>
-<%= render @activity %>
-<div>
-  <%= link_to "Edit this activity", edit_activity_path(@activity) %> |
-  <%= link_to "Back to activities", activities_path %>
-  <%= button_to "Destroy this activity", @activity, method: :delete %>
-</div>
 <h1><%= @activity.activity_name.name %></h1>
 <table class="table">
   <tr>
@@ -12,13 +6,9 @@
     <td><%= @activity.date.strftime("%B %d, %Y") %></td>
   </tr>
   <tr>
-    <th>Duration</
-  <td><%= @activity.duration %> minutes</td>
-</tr>
-<tr>
-  <th>Activity Name</th>
-  <td><%= @activity.activity_name.name %></td>
-</tr>
+    <th>Duration</th>
+    <td><%= @activity.duration %> minutes</td>
+  </tr>
 </table>
 <%= link_to 'Edit', edit_activity_path(@activity), class: 'btn btn-secondary' %>
 <%= link_to 'Delete', activity_path(@activity),
