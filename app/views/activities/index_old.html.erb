@@ -1,5 +1,5 @@
 <p style="color: green"><%= notice %></p>
-  <%= form_with method: :get do |f| %>
+<%= form_with method: :get do |f| %>
   <%= f.collection_select :activity_name_id, ActivityName.all, :id, :name, { prompt: true }, { class: 'form-control' } %>
   <%= f.label :start_date, 'From' %>
   <%= f.date_field :start_date, class: 'form-control' %>

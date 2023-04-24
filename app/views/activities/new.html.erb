@@ -11,7 +11,14 @@
   </div>
   <div class="mb-3">
     <%= form.label :duration %>
-    <%= form.number_field :duration, class: 'form-control' %>
+    <div class="row">
+      <div class="col">
+        <%= form.select :duration_hours, (0..24).to_a, {}, { class: 'form-control' } %>
+      </div>
+      <div class="col">
+        <%= form.select :duration_minutes, (0..59).to_a, {}, { class: 'form-control' } %>
+      </div>
+    </div>
   </div>
   <%= form.submit 'Create', class: 'btn btn-primary' %>
   <%= link_to 'Cancel', activities_path, class: 'btn btn-secondary' %>
