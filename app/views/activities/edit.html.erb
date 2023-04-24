@@ -1,6 +1,6 @@
 <h1>Edit Activity</h1>
 <%= form_with(model: @activity, local: true) do |form| %>
-  <%= render 'shared/error_messages', object: form.object %>
+  <%#= render 'shared/error_messages', object: form.object %>
   <div class="mb-3">
     <%= form.label :activity_name_id %>
     <%= form.collection_select :activity_name_id, ActivityName.all, :id, :name, class: 'form-control' %>

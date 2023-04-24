@@ -51,7 +51,7 @@ class ActivitiesController < ApplicationController
   def create
     # @activity = Activity.new(activity_params)
     @activity = current_user.activities.build(activity_params)
-    duration_in_minutes = @activity.duration.to_i + (params[:activity][:duration_hours].to_i * 60) + params[:activity][:duration_minutes].to_i
+    duration_in_minutes = (params[:activity][:duration_hours].to_i * 60) + params[:activity][:duration_minutes].to_i
     @activity.duration = duration_in_minutes
     # puts activity_params[:activity_name_id]
     respond_to do |format|
@@ -68,7 +68,7 @@ class ActivitiesController < ApplicationController
   # PATCH/PUT /activities/1 or /activities/1.json
   def update
     @activity = current_user.activities.find(params[:id])
-    duration_in_minutes = @activity.duration.to_i + (params[:activity][:duration_hours].to_i * 60) + params[:activity][:duration_minutes].to_i
+    duration_in_minutes = (params[:activity][:duration_hours].to_i * 60) + params[:activity][:duration_minutes].to_i
     @activity.duration = duration_in_minutes
     respond_to do |format|
       if @activity.update(activity_params)
