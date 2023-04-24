@@ -27,10 +27,9 @@
         <td><%= activity.date %></td>
         <td><%= activity.activity_name.name %></td>
         <td><%= activity.duration %></td>
-        <td>
-          <%= link_to 'Show', activity_path(activity), class: 'btn btn-primary btn-sm' %>
-          <%= link_to 'Edit', edit_activity_path(activity), class: 'btn btn-secondary btn-sm' %>
-          <%= button_to 'Delete', activity_path(activity),
+        <td><%= link_to 'Show', activity_path(activity), class: 'btn btn-primary btn-sm' %></td>
+        <td><%= link_to 'Edit', edit_activity_path(activity), class: 'btn btn-secondary btn-sm' %></td>
+        <td><%= button_to 'Delete', activity_path(activity),
                       method: :delete,
                       data: { confirm: 'Are you sure?' },
                       class: 'btn btn-danger btn-sm',
