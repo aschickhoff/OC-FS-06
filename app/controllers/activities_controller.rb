@@ -68,7 +68,8 @@ class ActivitiesController < ApplicationController
     @activity.duration = (params[:activity][:duration_hours].to_i * 60) + params[:activity][:duration_minutes].to_i
     # puts activity_params[:activity_name_id]
     respond_to do |format|
-      if @activity.save
+      if @activity.valid?
+        @activity.save
         format.html { redirect_to activity_url(@activity), notice: "Activity was successfully created." }
         format.json { render :show, status: :created, location: @activity }
       else
