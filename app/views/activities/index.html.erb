@@ -1,24 +1,38 @@
 <h1>Activities</h1>
 <%= form_with url: activities_path, method: :get do |form| %>
-  <%= form.label :activity_name_id, "Activity Name:" %>
-  <%= form.collection_select :activity_name_id, ActivityName.all, :id, :name, { include_blank: "All" }, { class: "form-control" } %>
-  <%= form.label :start_date, "Start Date:" %>
-  <%= form.date_field :start_date, class: "form-control" %>
-  <%= form.label :end_date, "End Date:" %>
-  <%= form.date_field :end_date, class: "form-control" %>
-  <%= form.label :min_duration, "Minimum Duration:" %>
-  <%= form.number_field :min_duration, class: "form-control" %>
-  <%= form.label :max_duration, "Maximum Duration:" %>
-  <%= form.number_field :max_duration, class: "form-control" %>
-  <%= form.submit "Filter", class: "btn btn-primary" %>
+  <div class="d-flex align-items-center">
+    <div class="flex-fill ms-0 me-2"><%= form.label :activity_name_id, "Activity:" %>
+      <%= form.collection_select :activity_name_id, ActivityName.all, :id, :name, { include_blank: "All" }, { class: "form-control form-control-sm me-2" } %>
+    </div>
+    <div class="flex-fill me-2">
+      <%= form.label :start_date, "Start Date:" %>
+      <%= form.date_field :start_date, class: "form-control form-control-sm me-2" %>
+    </div>
+    <div class="flex-fill me-2">
+      <%= form.label :end_date, "End Date:" %>
+      <%= form.date_field :end_date, class: "form-control form-control-sm me-2" %>
+    </div>
+    <div class="flex-fill me-2">
+      <%= form.label :min_duration, "Min duration (minutes):", class: "me-2" %>
+      <%= form.number_field :min_duration, class: "form-control form-control-sm me-2" %>
+    </div>
+    <div class="flex-fill me-2">
+      <%= form.label :max_duration, "Max duration (minutes):" %>
+      <%= form.number_field :max_duration, class: "form-control form-control-sm me-2" %>
+    </div>
+    <div class="flex-fill mt-2">
+      <%= form.submit "Filter", class: "btn btn-primary ms-2" %>
+    </div>
+  </div>
 <% end %>
 <table class="table">
   <thead>
     <tr>
-      <th>Date<%#= link_to "Date", { sort: "date", direction: params[:direction] == "asc" ? "desc" : "asc" }, { class: "btn btn-link" } %></th>
-      <th>Activity<%#= link_to "Activity Name", { sort: "activity_names.name", direction: params[:direction] == "asc" ? "desc" : "asc" }, { class: "btn btn-link" } %></th>
-      <th>Duration<%#= link_to "Duration", { sort: "duration", direction: params[:direction] == "asc" ? "desc" : "asc" }, { class: "btn btn-link" } %></th>
+      <th>Date</th>
+      <th>Activity</th>
+      <th>Duration</th>
       <th>Comment</th>
+      <th>Action</th>
     </tr>
   </thead>
   <tbody>
