@@ -1,20 +1,20 @@
-<div class="col-lg-3 mx-lg-auto">
+<div class="col-lg-4 p-5 mx-lg-auto">
   <div class="card shadow">
     <div class="card-header">
       <h2 class="card-title text-center">Log In</h2>
     </div>
     <div class="card-body">
       <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-        <div class="form-group">
+        <div class="mb-2">
           <%= f.label :email %><br />
-          <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+          <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control form-control-sm" %>
         </div>
-        <div class="form-group">
+        <div class="mb-2">
           <%= f.label :password %><br />
-          <%= f.password_field :password, autocomplete: "current-password" %>
+          <%= f.password_field :password, autocomplete: "current-password", class: "form-control form-control-sm" %>
         </div>
         <% if devise_mapping.rememberable? %>
-          <div class="form-group">
+          <div class="mb-2">
             <%= f.check_box :remember_me %>
             <%= f.label :remember_me %>
           </div>

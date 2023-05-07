@@ -1,11 +1,14 @@
 <div class="container">
   <div class="bg-light p-5 rounded shadow mt-5 border">
-    <h1 class="display-4">Join the Move and Groove Community!</h1>
-    <p class="lead">A fitness tracker site for logging your activities.</p>
-    <hr class="my-4">
     <% if user_signed_in? %>
+      <h1 class="display-4">Hello <%= current_user.username %></h1>
+      <p class="lead">I hope you had a great workout! Feel free to add a new activity.</p>
+      <hr class="my-4">
       <p><%= link_to "New Activity", new_activity_path, class: 'btn btn-success' %></p>
     <% else %>
+      <h1 class="display-4">Join the Move and Groove Community!</h1>
+      <p class="lead">A fitness tracker site for logging your activities.</p>
+      <hr class="my-4">
       <p>Already a member? Sign in below to track your progress.</p>
       <%= link_to "Sign Up", new_user_registration_path, class: "btn btn-primary btn-lg me-3" %>
       <%= link_to "Login", new_user_session_path, class: "btn btn-secondary btn-lg" %>
