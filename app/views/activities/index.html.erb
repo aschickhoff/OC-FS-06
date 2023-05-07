@@ -15,10 +15,10 @@
 <table class="table">
   <thead>
     <tr>
-      <th><%= link_to "Date", { sort: "date", direction: params[:direction] == "asc" ? "desc" : "asc" }, { class: "btn btn-link" } %></th>
-      <th><%= link_to "Activity Name", { sort: "activity_names.name", direction: params[:direction] == "asc" ? "desc" : "asc" }, { class: "btn btn-link" } %></th>
-      <th><%= link_to "Duration", { sort: "duration", direction: params[:direction] == "asc" ? "desc" : "asc" }, { class: "btn btn-link" } %></th>
-      <th></th>
+      <th>Date<%#= link_to "Date", { sort: "date", direction: params[:direction] == "asc" ? "desc" : "asc" }, { class: "btn btn-link" } %></th>
+      <th>Activity<%#= link_to "Activity Name", { sort: "activity_names.name", direction: params[:direction] == "asc" ? "desc" : "asc" }, { class: "btn btn-link" } %></th>
+      <th>Duration<%#= link_to "Duration", { sort: "duration", direction: params[:direction] == "asc" ? "desc" : "asc" }, { class: "btn btn-link" } %></th>
+      <th>Comment</th>
     </tr>
   </thead>
   <tbody>
@@ -27,6 +27,7 @@
         <td><%= activity.date %></td>
         <td><%= activity.activity_name.name %></td>
         <td><%= activity.duration %></td>
+        <td><%= activity.comment %></td>
         <td><%= link_to 'Show', activity_path(activity), class: 'btn btn-primary btn-sm' %></td>
         <td><%= link_to 'Edit', edit_activity_path(activity), class: 'btn btn-secondary btn-sm' %></td>
         <td><%= button_to 'Delete', activity_path(activity),

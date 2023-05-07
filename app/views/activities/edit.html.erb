@@ -20,6 +20,10 @@
       </div>
     </div>
   </div>
+  <div class="mb-3">
+    <%= form.label :comment %>
+    <%= form.text_area :comment, class: 'form-control' %>
+  </div>
   <%= form.submit 'Update', class: 'btn btn-primary' %>
   <%= link_to 'Cancel', activity_path(@activity), class: 'btn btn-secondary' %>
 <% end %>

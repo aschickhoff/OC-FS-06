@@ -6,6 +6,7 @@ class ActivitiesController < ApplicationController
   def index
     @activities = current_user.activities.includes(:activity_name)
 
+
     if params[:activity_name_id].present?
       @activities = @activities.where(activity_name_id: params[:activity_name_id])
     end
@@ -33,7 +34,11 @@ class ActivitiesController < ApplicationController
 
   # GET /activities/1 or /activities/1.json
   def show
-    @activity = current_user.activities.find(params[:id])
+    @activity = current_user.activities.find_by(id: params[:id])
+    if @activity.nil?
+      flash[:alert] = "Activity not found"
+      redirect_to activities_path
+    end
   end
 
   # GET /activities/new
@@ -44,15 +49,18 @@ class ActivitiesController < ApplicationController
 
   # GET /activities/1/edit
   def edit
-    @activity = current_user.activities.find(params[:id])
+    @activity = current_user.activities.find_by(id: params[:id])
+    if @activity.nil?
+      flash[:alert] = "Activity not found"
+      redirect_to activities_path
+    end
   end
 
   # POST /activities or /activities.json
   def create
     # @activity = Activity.new(activity_params)
     @activity = current_user.activities.build(activity_params)
-    duration_in_minutes = (params[:activity][:duration_hours].to_i * 60) + params[:activity][:duration_minutes].to_i
-    @activity.duration = duration_in_minutes
+    @activity.duration = (params[:activity][:duration_hours].to_i * 60) + params[:activity][:duration_minutes].to_i
     # puts activity_params[:activity_name_id]
     respond_to do |format|
       if @activity.save
@@ -67,9 +75,12 @@ class ActivitiesController < ApplicationController
 
   # PATCH/PUT /activities/1 or /activities/1.json
   def update
-    @activity = current_user.activities.find(params[:id])
-    duration_in_minutes = (params[:activity][:duration_hours].to_i * 60) + params[:activity][:duration_minutes].to_i
-    @activity.duration = duration_in_minutes
+    @activity = current_user.activities.find_by(id: params[:id])
+    if @activity.nil?
+      flash[:alert] = "Activity not found"
+      redirect_to activities_path
+    end
+    @activity.duration = (params[:activity][:duration_hours].to_i * 60) + params[:activity][:duration_minutes].to_i
     respond_to do |format|
       if @activity.update(activity_params)
         format.html { redirect_to activity_url(@activity), notice: "Activity was successfully updated." }
@@ -83,7 +94,7 @@ class ActivitiesController < ApplicationController
 
   # DELETE /activities/1 or /activities/1.json
   def destroy
-    @activity = current_user.activities.find(params[:id])
+    @activity = current_user.activities.find_by(id: params[:id])
     @activity.destroy
 
     respond_to do |format|
@@ -96,13 +107,17 @@ class ActivitiesController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_activity
       # @activity = Activity.find(params[:id])
-      @activity = current_user.activities.find(params[:id])
+      @activity = current_user.activities.find_by(id: params[:id])
+      if @activity.nil?
+        flash[:alert] = "Activity not found"
+        redirect_to activities_path
+      end
     end
 
     # Only allow a list of trusted parameters through.
     def activity_params
       puts params.inspect
       # params.require(:activity).permit(:name, :date, :duration)
-      params.require(:activity).permit(:activity_name_id, :date, :duration, :user_id)
+      params.require(:activity).permit(:activity_name_id, :date, :duration, :comment, :user_id)
     end
 end

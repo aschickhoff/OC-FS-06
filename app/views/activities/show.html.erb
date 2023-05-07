@@ -9,6 +9,11 @@
     <th>Duration</th>
     <td><%= @activity.duration %> minutes</td>
   </tr>
+  
+  <tr>
+    <th>Comment</th>
+    <td><%= @activity.comment %></td>
+  </tr>
 </table>
 <%= link_to 'Edit', edit_activity_path(@activity), class: 'btn btn-secondary' %>
 <%= link_to 'Back', activities_path, class: 'btn btn-primary' %>
