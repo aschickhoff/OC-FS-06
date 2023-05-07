@@ -53,6 +53,11 @@ class ActivitiesController < ApplicationController
     if @activity.nil?
       flash[:alert] = "Activity not found"
       redirect_to activities_path
+    else
+      duration_minutes = (@activity.duration % 60).to_i
+      duration_hours = (@activity.duration / 60).to_i
+      @duration_hours = duration_hours
+      @duration_minutes = duration_minutes
     end
   end
 
