@@ -14,7 +14,7 @@
               <%= form.label :date, "Date:" %>
               <%= form.date_field :date, class: "form-control" %>
             </div>
-            <div class="col-md-2">
+            <div class="col-md-3">
               <%= form.label :duration, "Duration:" %>
               <div class="input-group">
                 <%= form.select :duration_hours, (0..24).to_a, {}, { class: "form-control" } %>

@@ -9,19 +9,19 @@
             </div>
             <div class="flex-grow-1 me-2">
               <%= form.label :start_date, "Start Date:" %>
-              <%= form.date_field :start_date, class: "form-control form-control-sm me-2" %>
+              <%= form.date_field :start_date, class: "form-control form-control-sm me-2", value: params[:start_date] %>
             </div>
             <div class="flex-grow-1 me-2">
               <%= form.label :end_date, "End Date:" %>
-              <%= form.date_field :end_date, class: "form-control form-control-sm me-2" %>
+              <%= form.date_field :end_date, class: "form-control form-control-sm me-2", value: params[:end_date] %>
             </div>
             <div class="flex-grow-1 me-2">
               <%= form.label :min_duration, "Min duration (minutes):", class: "me-2" %>
-              <%= form.number_field :min_duration, class: "form-control form-control-sm me-2" %>
+              <%= form.number_field :min_duration, class: "form-control form-control-sm me-2", value: params[:min_duration] %>
             </div>
             <div class="flex-grow-1 me-2">
               <%= form.label :max_duration, "Max duration (minutes):" %>
-              <%= form.number_field :max_duration, class: "form-control form-control-sm me-2" %>
+              <%= form.number_field :max_duration, class: "form-control form-control-sm me-2", value: params[:max_duration] %>
             </div>
             <div>
               <%= form.submit "Filter", class: "btn btn-primary ms-2" %>
