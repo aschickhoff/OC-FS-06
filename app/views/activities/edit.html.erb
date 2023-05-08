@@ -1,7 +1,8 @@
+<div class="bg-image bg-image-seven"></div>
 <div class="container">
   <div class="row">
     <div class="col-md-12 mx-auto">
-      <div class="bg-light shadow mt-5 border p-5">
+      <div class="bgt shadow mt-5 border p-5">
         <h2 class="mb-3">Edit Activity</h2>
         <%= form_with(model: @activity, local: true) do |form| %>
           <%#= render "shared/error_messages", object: form.object %>
@@ -14,7 +15,7 @@
               <%= form.label :date, "Date:" %>
               <%= form.date_field :date, class: "form-control" %>
             </div>
-            <div class="col-md-2">
+            <div class="col-md-3">
               <%= form.label :duration, "Duration:" %>
               <div class="input-group">
                 <%= form.select :duration_hours, (0..24).to_a, { selected: @duration_hours }, { class: 'form-control' } %>
@@ -28,7 +29,7 @@
               </div>
             </div>
           </div>
-          <div class="mb-3 col-md-4">
+          <div class="mb-3 col-md-5">
             <%= form.label :comment, "Comment:" %>
             <%= form.text_area :comment, class: "form-control" %>
           </div>

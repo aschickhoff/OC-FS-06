@@ -1,7 +1,8 @@
+<div class="bg-image bg-image-three"></div>
 <div class="container">
   <div class="row">
     <div class="col-md-12 mx-auto">
-      <div class="bg-light shadow mt-2 border p-3">
+      <div class="bgt shadow mt-2 border p-3">
         <%= form_with url: activities_path, method: :get do |form| %>
           <div class="d-flex align-items-center justify-content-end">
             <div class="flex-grow-1 me-2"><%= form.label :activity_name_id, "Activity:" %>
@@ -35,7 +36,7 @@
 <div class="container">
   <div class="row">
     <div class="col-md-12 mx-auto">
-      <div class="bg-light shadow mt-5 border p-5">
+      <div class="bgt shadow mt-5 border p-5">
         <h1>Activities</h1>
         <table class="table">
           <thead>
@@ -54,13 +55,12 @@
                 <td><%= activity.activity_name.name %></td>
                 <td><%= format_duration(activity.duration) %></td>
                 <td><%= activity.comment %></td>
-                <td><%= link_to 'Show', activity_path(activity), class: 'btn btn-primary btn-sm' %></td>
-                <td><%= link_to 'Edit', edit_activity_path(activity), class: 'btn btn-secondary btn-sm' %></td>
-                <td><%= button_to 'Delete', activity_path(activity),
-                      method: :delete,
-                      data: { confirm: 'Are you sure?' },
-                      class: 'btn btn-danger btn-sm',
-                      remote: true %>
+                <td>
+                  <%= link_to '', activity_path(activity), class: 'btn btn-primary btn-sm bi bi-eye' %>
+                  <%= link_to '', edit_activity_path(activity), class: 'btn btn-secondary btn-sm bi bi-pencil' %>
+                </td>
+                <td>
+                  <%= button_to ' Delete', activity_path(activity), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-sm bi bi-trash', remote: true %>
                 </td>
               </tr>
             <% end %>

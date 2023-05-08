@@ -74,5 +74,6 @@ end
 gem "cssbundling-rails"
 gem 'devise', '~> 4.9', '>= 4.9.2'
 
+
 # for pagination
 gem 'kaminari', '~> 1.2', '>= 1.2.2'
