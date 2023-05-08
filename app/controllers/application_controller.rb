@@ -1,5 +1,7 @@
 class ApplicationController < ActionController::Base
+  include ActivitiesHelper
   after_action :store_location
+  before_action :authenticate_user!, except: [:index, :about]
 
   private
 
