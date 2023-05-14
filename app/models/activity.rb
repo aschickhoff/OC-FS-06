@@ -4,3 +4,4 @@ class Activity < ApplicationRecord
 
   validates :activity_name_id, :date, :duration, presence: true
 end
+

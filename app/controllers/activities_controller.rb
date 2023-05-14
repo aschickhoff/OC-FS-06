@@ -1,5 +1,6 @@
 class ActivitiesController < ApplicationController
   before_action :set_activity, only: %i[ show edit update destroy ]
+  before_action :authenticate_user!, except: [:index, :about]
 
   # GET /activities or /activities.json
   def index
@@ -126,3 +127,4 @@ class ActivitiesController < ApplicationController
       params.require(:activity).permit(:activity_name_id, :date, :duration, :comment, :user_id)
     end
 end
+

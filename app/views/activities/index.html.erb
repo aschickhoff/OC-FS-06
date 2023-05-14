@@ -6,7 +6,7 @@
         <%= form_with url: activities_path, method: :get do |form| %>
           <div class="d-flex align-items-center justify-content-end">
             <div class="flex-grow-1 me-2"><%= form.label :activity_name_id, "Activity:" %>
-              <%= form.collection_select :activity_name_id, ActivityName.all, :id, :name, { include_blank: "All" }, { class: "form-control form-control-sm me-2" } %>
+              <%= form.collection_select :activity_name_id, ActivityName.all, :id, :name, { include_blank: "All" }, { class: "form-control form-control-sm me-2", value: params[:activity_name_id] } %>
             </div>
             <div class="flex-grow-1 me-2">
               <%= form.label :start_date, "Start Date:" %>

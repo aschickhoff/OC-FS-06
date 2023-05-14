@@ -3,6 +3,8 @@ class ApplicationController < ActionController::Base
   after_action :store_location
   before_action :authenticate_user!, except: [:index, :about]
 
+  rescue_from NoMethodError, with: :handle_no_method_error
+
   private
 
   def store_location
@@ -17,4 +19,9 @@ class ApplicationController < ActionController::Base
     root_path
   end
 
+  def handle_no_method_error
+    render file: "#{Rails.root}/public/404.html", layout: false, status: :not_found
+  end
+
 end
+

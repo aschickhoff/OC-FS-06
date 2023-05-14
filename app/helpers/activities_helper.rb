@@ -5,3 +5,4 @@ module ActivitiesHelper
     "#{hours}h #{minutes}m"
   end
 end
+
